@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   before_action :require_login
-  skip_before_action :require_login, only: [:create, :destroy]
+  skip_before_action :require_login, only: [:create]
 
   def new
 
@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
   private
 
   def require_login
-    redirect_to '/login' unless params.include? :name
+    redirect_to '/login' unless session.include? :name
   end
 
 end
